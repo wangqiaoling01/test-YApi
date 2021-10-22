@@ -1,0 +1,6 @@
+{
+    "url": "yapi-swagger.json",
+    "remoteUrl": "https://yapi.baidu-int.com/api/open/plugin/export-full?type=json&pid=21481&status=all&token=028cc35250e5788b218f4e54f45e80eb5835fdd9ea7c2aeb12b8e9ee4f673354",
+    "type": "yapi",
+    "swaggerParser": {}
+}
