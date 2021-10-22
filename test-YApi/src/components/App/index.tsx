@@ -1,25 +1,50 @@
-import {Input, Button, DatePicker, Form, Menu} from 'antd';
-import {get, cloneDeep, uniq, uniqBy, debounce} from 'lodash';
-import moment from 'moment';
-
-// console.log(get, uniq, uniqBy, debounce);
-// console.log(cloneDeep({a: 1}));
-// console.log(moment('2021-01-21'));
+import {Button} from 'antd';
 
 import {APIS} from '@/services/api/api';
-// console.log(APIS.DefaultApi.hotspotApiGetlemmataskGet);
-const {hotspotApiGetlemmataskGet, hotspotBrowseShowauditingnewsGet} = APIS;
+const {hotspotApiGetlemmataskGet, hotspotBrowseShowauditingnewsGet} = APIS.DefaultApi;
+
+import { useState } from 'react';
+import { HotspotApiGetlemmataskData } from '@/services';
+import {HotspotBrowseShowauditingnewsData} from '@/services';
+interface IserverData1 {
+    data: HotspotApiGetlemmataskData;
+}
+const DEFAULT_SERVAERDATA1: IserverData1 = {
+    data: {}
+}
+interface IserverData2 {
+    count: number;
+    list: HotspotBrowseShowauditingnewsData[];
+}
+const DEFAULT_SERVAERDATA2: IserverData2 = {
+    count: 0,
+    list: []
+}
 const App = () => {
+    const [serverData1, setServerData1] = useState<IserverData1>(DEFAULT_SERVAERDATA1);
+    const [serverData2, setServerData2] = useState<IserverData2>(DEFAULT_SERVAERDATA2);
+
     const getData1 = async () => {
-        const res = await hotspotApiGetlemmataskGet();
-        console.log(res);
+        try {
+            const {errno, errmsg, data} = await hotspotApiGetlemmataskGet();
+            setServerData1({data});
+        } catch (error) {
+            console.error(error);
+        }
     };
     const getData2 = async () => {
-        const res = await hotspotBrowseShowauditingnewsGet({
-            limit: 20,
-            offset: 0,
-        })
-        console.log(res);
+        try {
+            const {errno, errmsg, data, count} = await hotspotBrowseShowauditingnewsGet({
+                limit: 20,
+                offset: 0,
+            });
+            setServerData2({
+                count,
+                list: data || [],
+            });
+        } catch (error) {
+            console.error(error);
+        }
     };
     return (
         <div>
@@ -31,13 +56,14 @@ const App = () => {
                 <li>搜索各处的<code>TODO</code>并相应修改。</li>
                 <li>阅读<a href="https://ecomfe.github.io/reskript">reSKRipt的文档</a>了解更多配置和开发方式。</li>
             </ul>
-            <Input />
             <Button onClick={getData1}>测试1</Button>
+            <p>
+                测试1: {serverData1.data.website}
+            </p>
             <Button onClick={getData2}>测试2</Button>
-
-            <DatePicker />
-            <Form></Form>
-            <Menu></Menu>
+            <p>
+                测试2: count - {serverData2.count}
+            </p>
         </div>
     )
 };
