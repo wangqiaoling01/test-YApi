@@ -28,11 +28,6 @@ export interface ParamshotspotApiGetlemmataskGet {
 }
 /**
   * @description hotspotBrowseShowauditingnewsGet参数
-  * @property `Cookie` Cookie (Only:BAIDUID=9878EAC12975DEDB20954D267E8B7784:FG=1; PSTM=1631884363; BIDUPSID=6CB3154DDD4064B43A487E5C8747B707; UUAP_TRACE_TOKEN=0e313a0c42ac548396cad5e9721f8fd0; lastWebsite=hotlist; BDSFRCVID=XwDOJeC62icoSzOH_uEmu8KF12b_g6nTH6aoYAuhuaX7xFtqEa3uEG0Ptf8g0Ku-y2KJogKK0mOTHv-F_2uxOjjg8UtVJeC6EG0Ptf8g0M5; H_BDCLCKID_SF=JRIf_CI5fIvbfP0kMPo_5PLtMq32etJyaR3vLhbvWJ5TMCoY-Pn62x4nBpo42RLOW2FDoJo75KQ_ShPC-tnZLJLJ5fQvtbvlbT643COa3l02V-bIe-t2ynQD2H5iBtRMW20jWl7mWPLVsxA45J7cM4IseboJLfT-0bc4KKJxbnLWeIJEjj6jK4JKjH0ttMK; zhishiTopicRequestTime=1632992301278; BDUSS=ml4SFFtWGxBdmkzeS1zM3I3ZU5zWWpqRUJYZjliZ1FtUWN2Vm9PflVhcHBoWTloRVFBQUFBJCQAAAAAAAAAAAEAAADEIhRiX831x8nB4QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGn4Z2Fp-GdhS; UUAP_P_TOKEN=PT-656934703199211522-b6nyd6LE4F-uuap; jsdk-user=pkAlFarHwrv9J21Sx8bFYQ==; delPer=0; jsdk-uuid=c640e1c2-dea5-469d-977f-82ed53ea043f; Hm_lvt_55b574651fcae74b0a9f1cf9c8d7c93a=1634197680,1634197805,1634200891,1634798493; Hm_lpvt_55b574651fcae74b0a9f1cf9c8d7c93a=1634798493; baikeVisitId=4d5c7aac-40b2-47a8-a303-eaf396aebba6; BDORZ=B490B5EBF6F3CD402E515D22BCDA1598; BDRCVFR[feWj1Vr5u3D]=I67x6TjHwwYf0; FIS_DEBUG_EDIT=1; PSINO=1; H_PS_PSSID=34530_34068_31254_34863_34599_34584_34504_34830_34813_26350_22159; BA_HECTOR=0ka5248ha0200581fb1gn4pf90q)
-  * @property `Accept` Accept (Only:application/json, text/plain, *_/_*)
-  * @property `Host` Host (Only:lqxoff.baike.otp.baidu.com)
-  * @property `Accept_Language` Accept-Language (Only:zh-CN,zh;q=0.9)
-  * @property `Cache_Control` Cache-Control (Only:no-cache)
   * @property `limit` 当前展示多少数据
   * @property `offset` 第几页
   * @property `[startTime]` 抓取时间的开始时间
@@ -42,23 +37,6 @@ export interface ParamshotspotApiGetlemmataskGet {
   * @property `[status]` 任务状态
   */
 export interface ParamshotspotBrowseShowauditingnewsGet {
-  // headerParams
-  /**
-   * Accept (Only:application/json, text/plain, *_/_*)
-   */
-  Accept: string;
-  /**
-   * Host (Only:lqxoff.baike.otp.baidu.com)
-   */
-  Host: string;
-  /**
-   * Accept-Language (Only:zh-CN,zh;q=0.9)
-   */
-  Accept_Language: string;
-  /**
-   * Cache-Control (Only:no-cache)
-   */
-  Cache_Control: string;
   // queryParams
   /**
    * 当前展示多少数据
