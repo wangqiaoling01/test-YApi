@@ -91,7 +91,17 @@ const App = () => {
             console.log(error);
         }
     };
-
+    const addBook = async () => {
+        try {
+            const response = await BooksApi.apiAddBookPost({
+                name: 'JS',
+                author: 'js之父'
+            });
+            response.errno === 0 ? message.success(response.errmsg) : message.error(response.errmsg);
+        } catch (error) {
+            console.log(error);
+        }
+    }
     return (
         <div>
             <Button onClick={getUserList}>获取用户列表</Button>
@@ -101,6 +111,7 @@ const App = () => {
                 title={()=>(`数据总数：${userList.count}`)}
             />
             <Button onClick={getBooksList}>获取图书列表</Button>
+            <Button onClick={addBook}>添加图书</Button>
             <Table
                 columns={bookColumns}
                 dataSource={bookList.data}

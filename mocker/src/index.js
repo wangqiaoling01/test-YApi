@@ -16,6 +16,10 @@ module.exports = {
             }
         ]
     },
+    "POST /api/addBook": {
+        errno: 0,
+        errmsg: '添加成功'
+    },
     "GET /api/userList": {
         errno: 0,
         errmsg: "",
