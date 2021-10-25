@@ -1,69 +1,111 @@
-import {Button} from 'antd';
+import {Button, message, Table} from 'antd';
 
 import {APIS} from '@/services/api/api';
-const {hotspotApiGetlemmataskGet, hotspotBrowseShowauditingnewsGet} = APIS.DefaultApi;
-
 import { useState } from 'react';
-import { HotspotApiGetlemmataskData } from '@/services';
-import {HotspotBrowseShowauditingnewsData} from '@/services';
-interface IserverData1 {
-    data: HotspotApiGetlemmataskData;
-}
-const DEFAULT_SERVAERDATA1: IserverData1 = {
-    data: {}
-}
-interface IserverData2 {
-    count: number;
-    list: HotspotBrowseShowauditingnewsData[];
-}
-const DEFAULT_SERVAERDATA2: IserverData2 = {
-    count: 0,
-    list: []
-}
-const App = () => {
-    const [serverData1, setServerData1] = useState<IserverData1>(DEFAULT_SERVAERDATA1);
-    const [serverData2, setServerData2] = useState<IserverData2>(DEFAULT_SERVAERDATA2);
+import { ApiBook, ApiUserList } from '@/services';
+const {UserApi, BooksApi} = APIS;
 
-    const getData1 = async () => {
+const userColumns = [
+    {
+        title: '编号',
+        dataIndex: 'id',
+    },
+    {
+        title: '姓名',
+        dataIndex: 'name',
+    },
+    {
+        title: '年龄',
+        dataIndex: 'age'
+    },
+].map(item => {
+    return {
+        ...item,
+        key: item.dataIndex,
+        align: 'center'
+    }
+});
+
+const USERLIST_DEFAULT_DATA: ApiUserList = {
+    errno: 0,
+    errmsg: '',
+    count: 0,
+    data: [],
+};
+
+const bookColumns = [
+    {
+        title: '编号',
+        dataIndex: 'id',
+    },
+    {
+        title: '图书名称',
+        dataIndex: 'name'
+    },
+    {
+        title: '作者',
+        dataIndex: 'author'
+    }
+].map(item => {
+    return {
+        ...item,
+        key: item.dataIndex,
+        align: 'center'
+    }
+});
+
+const BOOKLIST_DEFAULT_DATA: ApiBook = {
+    errmsg: '',
+    errno: 0,
+    count: 0,
+    data: [],
+};
+const App = () => {
+    const [userList, setUserList] = useState<ApiUserList>(USERLIST_DEFAULT_DATA);
+
+    const getUserList = async () => {
         try {
-            const {errno, errmsg, data} = await hotspotApiGetlemmataskGet();
-            setServerData1({data});
+            const response = await UserApi.apiUserListGet({});
+            const {errno, errmsg} = response;
+            if (errno === 0) {
+                setUserList(response);
+            } else {
+                message.error(errmsg);
+            }
         } catch (error) {
-            console.error(error);
+            console.log(error);
         }
     };
-    const getData2 = async () => {
+
+    const [bookList, setBookList] = useState<ApiUserList>(BOOKLIST_DEFAULT_DATA);
+    const getBooksList = async () => {
         try {
-            const {errno, errmsg, data, count} = await hotspotBrowseShowauditingnewsGet({
-                limit: 20,
-                offset: 0,
-            });
-            setServerData2({
-                count,
-                list: data || [],
-            });
+            const response = await BooksApi.apiBookGet({});
+            const {errno, errmsg} = response;
+            if (errno === 0) {
+                setBookList(response);
+            } else {
+                message.error(errmsg);
+            }
         } catch (error) {
-            console.error(error);
+            console.log(error);
         }
     };
+
     return (
         <div>
-            <h1>恭喜你跑起来了</h1>
-            <p>能看到这个页面，至少你已经能够启动系统，后面还需要清理一些TODO~</p>
-            <h2>检查项</h2>
-            <ul>
-                <li>确保<code>node</code>和<code>npm</code>都是最新版本。</li>
-                <li>搜索各处的<code>TODO</code>并相应修改。</li>
-                <li>阅读<a href="https://ecomfe.github.io/reskript">reSKRipt的文档</a>了解更多配置和开发方式。</li>
-            </ul>
-            <Button onClick={getData1}>测试1</Button>
-            <p>
-                测试1: {serverData1.data.website}
-            </p>
-            <Button onClick={getData2}>测试2</Button>
-            <p>
-                测试2: count - {serverData2.count}
-            </p>
+            <Button onClick={getUserList}>获取用户列表</Button>
+            <Table
+                columns={userColumns}
+                dataSource={userList.data}
+                title={()=>(`数据总数：${userList.count}`)}
+            />
+            <Button onClick={getBooksList}>获取图书列表</Button>
+            <Table
+                columns={bookColumns}
+                dataSource={bookList.data}
+                title={()=>(`数据总数：${bookList.count}`)}
+            />
         </div>
     )
 };

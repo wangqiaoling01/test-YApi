@@ -15,13 +15,9 @@ import * as models from './models';
 /**
   * @property `[errno]` 
   * @property `[errmsg]` 
-  * @property `[count]` 
-  * @property `[data]` 
   */
-export interface HotspotBrowseShowauditingnews {
+export interface ApiEditBook {
   "errno"?: number;
   "errmsg"?: string;
-  "count"?: number;
-  "data"?: Array<models.HotspotBrowseShowauditingnewsData>;
 }
 

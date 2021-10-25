@@ -13,9 +13,15 @@
 import * as models from './models';
 
 /**
-  * @property `[recommends]` 
+  * @property `[errno]` 
+  * @property `[errmsg]` 
+  * @property `[count]` 
+  * @property `[data]` 
   */
-export interface HotspotBrowseShowauditingnewsExtData {
-  "recommends"?: Array<models.HotspotBrowseShowauditingnewsExtDataRecommends>;
+export interface ApiUserList {
+  "errno"?: number;
+  "errmsg"?: string;
+  "count"?: number;
+  "data"?: Array<models.ApiUserListData>;
 }
 

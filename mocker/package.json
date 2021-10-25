@@ -1,0 +1,21 @@
+{
+  "name": "mocker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon --exec babel-node  ./index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.8.4",
+    "@babel/node": "^7.8.4",
+    "@babel/preset-env": "^7.8.4",
+    "nodemon": "^2.0.2"
+  },
+  "dependencies": {
+    "mocker-api": "^1.11.2",
+    "write-json-file": "^4.2.1"
+  }
+}

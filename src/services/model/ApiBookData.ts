@@ -13,13 +13,13 @@
 import * as models from './models';
 
 /**
-  * @property `[errno]` 
-  * @property `[errmsg]` 
-  * @property `[data]` 
+  * @property `[name]` 
+  * @property `id` 
+  * @property `[author]` 
   */
-export interface HotspotApiGetlemmatask {
-  "errno"?: number;
-  "errmsg"?: string;
-  "data"?: models.HotspotApiGetlemmataskData;
+export interface ApiBookData {
+  "name"?: string;
+  "id": number;
+  "author"?: string;
 }
 
